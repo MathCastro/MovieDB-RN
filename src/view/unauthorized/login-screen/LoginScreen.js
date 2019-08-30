@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View, Text, TextInput, Button, TouchableOpacity} from 'react-native';
 import Styles from './LoginScreen.styles';
 
 const LoginScreen = props => {
@@ -7,24 +7,45 @@ const LoginScreen = props => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    console.log(email, password);
     setEmail(email);
     setPassword(password);
   }, [email, password]);
 
   return (
-    <View styles={Styles.container}>
-      <TextInput onChange={event => setPassword(event.target.value)} />
-      <TextInput onChange={event => setEmail(event.target.value)} />
-      <Button
-        title="Button"
-        onPress={() => {
-          props.navigation.navigate('App');
-        }}
-      />
-      <Text>{(email, password)}</Text>
+    <View style={Styles.container}>
+      <View style={Styles.card}>
+        <Text style={Styles.cardHeader}>Login</Text>
+        <TextInput
+          placeholder="Email"
+          style={Styles.input}
+          onChangeText={text => setEmail(text)}
+        />
+        <TextInput
+          placeholder="Password"
+          style={Styles.input}
+          onChangeText={text => setPassword(text)}
+        />
+        <TouchableOpacity
+          style={Styles.button}
+          onPress={() => {
+            props.navigation.navigate('App');
+          }}>
+          <Text style={Styles.textButton}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={Styles.registerButton}
+          onPress={() => {
+            props.navigation.push('Register');
+          }}>
+          <Text style={Styles.registerTextButton}>Register</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
+};
+
+LoginScreen.navigationOptions = {
+  header: null,
 };
 
 export default LoginScreen;

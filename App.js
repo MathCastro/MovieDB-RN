@@ -4,15 +4,13 @@ import SearchScreen from './src/view/authorized/search-screen/SearchScreen';
 import LoginScreen from './src/view/unauthorized/login-screen/LoginScreen';
 import RegisterScreen from './src/view/unauthorized/register-screen/RegisterScreen';
 import AuthLoadingScreen from './src/view/AuthLoadingScreen';
+import Colors from './src/util/color';
 
 import {
   createSwitchNavigator,
   createStackNavigator,
   createAppContainer,
 } from 'react-navigation';
-
-// Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
-// goes here.
 
 const AppStack = createStackNavigator(
   {
@@ -21,15 +19,30 @@ const AppStack = createStackNavigator(
     Detail: DetailScreen,
   },
   {
+    headerMode: 'screen',
+    defaultNavigationOptions: {
+      headerTintColor: '#000',
+      headerStyle: {
+        backgroundColor: Colors.primaryBlue,
+      },
+    },
     initialRouteName: 'Home',
   },
 );
+
 const AuthStack = createStackNavigator(
   {
     SignIn: LoginScreen,
     Register: RegisterScreen,
   },
   {
+    headerMode: 'screen',
+    defaultNavigationOptions: {
+      headerTintColor: '#000',
+      headerStyle: {
+        backgroundColor: Colors.primaryBlue,
+      },
+    },
     initialRouteName: 'SignIn',
   },
 );
